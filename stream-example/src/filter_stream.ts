@@ -19,6 +19,8 @@ export class FilterTransform extends Transform {
        }
      //override the transform method to suit it to our needs
        _transform(chunk: any, encoding?: string, callback?: Function){
+
+        console.log(`Transforming ${chunk} ...`)
         
          //we remove those keys which are passed out in filter options
          let filteredKeys=Object.keys(chunk).filter((key)=>{
@@ -30,6 +32,8 @@ export class FilterTransform extends Transform {
            accum[key]=chunk[key];
            return accum;
          },{})
+
+         console.log(`Filtered Object = ${filteredObj}`);
                 
          this.push(filteredObj);
          callback();
